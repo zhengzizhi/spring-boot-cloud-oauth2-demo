@@ -132,9 +132,12 @@ curl -i -X POST http://localhost:8081/uaa/oauth/token \
 
 
 
-
+*********************************************************************************
+**************************************************************************************
+·
 
 本范例反序列化spring boot 2.x 不支持，需要解决如下问题
+
 private OAuth2AccessToken deserializeAccessToken(byte[] bytes) {
 	return oauth2AccessTokenSerialization.deserialize(bytes);
 }
@@ -150,3 +153,4 @@ when deserializing json to OAuth2Authentication is failed!!!
 如果你们能解决这个问题 Token / JWT Token 就能跨语言共享啦
 If you can solve this problem, Token / JWT Token can be shared across languages.
 
+·

@@ -141,15 +141,44 @@ curl -i -X POST http://localhost:8081/uaa/oauth/token \
 private OAuth2AccessToken deserializeAccessToken(byte[] bytes) {
 	return oauth2AccessTokenSerialization.deserialize(bytes);
 }
+
 when deserializing json to OAuth2AccessToken is OK!!!
 
 ==============================================
 private OAuth2Authentication deserializeAuthentication(byte[] bytes) {
 return oauth2AuthenticationSerialization.deserialize(bytes);
 }
+
 when deserializing json to OAuth2Authentication is failed!!!
 
 如果你们能解决这个问题 Token / JWT Token 就能跨语言共享啦
 If you can solve this problem, Token / JWT Token can be shared across languages.
 
 
+
+Client Credentials Mode
+Example1：
+applicationClientId:secret 's key-value BASE64 code is YXBwbGljYXRpb25DbGllbnRJZDpzZWNyZXQ=
+
+curl -i -X POST http://localhost:8081/uaa/oauth/token
+-H 'authorization: Basic YXBwbGljYXRpb25DbGllbnRJZDpzZWNyZXQ='
+-H 'cache-control: no-cache'
+-H 'content-type: application/x-www-form-urlencoded'
+-d 'grant_type=client_credentials&client_id=applicationClientId&client_secret=secret'
+
+[root@contoso ~]# redis-cli -h 127.0.0.1 -p 6379
+127.0.0.1:6379> monitor
+OK
+1536174794.483180 [0 127.0.0.1:35750] "GET" ""auth_to_access:c474a00eab4c206088ae126b00cece38""
+1536174931.358496 [0 127.0.0.1:35750] "SET" ""access:94c8bfe3-8247-4429-a910-4bef74d23232"" "{"access_token":"94c8bfe3-8247-4429-a910-4bef74d23232","token_type":"bearer","expires_in":43180,"scope":"read write foo bar"}"
+1536174931.360426 [0 127.0.0.1:35750] "SET" ""auth:94c8bfe3-8247-4429-a910-4bef74d23232"" "{"authorities":[],"details":null,"authenticated":true,"userAuthentication":null,"oauth2Request":{"clientId":"applicationClientId","scope":["read","write","foo","bar"],"requestParameters":{"grant_type":"client_credentials","client_id":"applicationClientId"},"resourceIds":[],"authorities":[],"approved":true,"refresh":false,"redirectUri":null,"responseTypes":[],"extensions":{},"refreshTokenRequest":null,"grantType":"client_credentials"},"principal":"applicationClientId","clientOnly":true,"credentials":"","name":"applicationClientId"}"
+1536174931.360700 [0 127.0.0.1:35750] "SET" ""auth_to_access:c474a00eab4c206088ae126b00cece38"" "{"access_token":"94c8bfe3-8247-4429-a910-4bef74d23232","token_type":"bearer","expires_in":43180,"scope":"read write foo bar"}"
+1536174931.362819 [0 127.0.0.1:35750] "RPUSH" ""client_id_to_access:applicationClientId"" "{"access_token":"94c8bfe3-8247-4429-a910-4bef74d23232","token_type":"bearer","expires_in":43180,"scope":"read write foo bar"}"
+1536174931.368307 [0 127.0.0.1:35750] "EXPIRE" ""access:94c8bfe3-8247-4429-a910-4bef74d23232"" "43139"
+1536174931.368404 [0 127.0.0.1:35750] "EXPIRE" ""auth:94c8bfe3-8247-4429-a910-4bef74d23232"" "43139"
+1536174931.368413 [0 127.0.0.1:35750] "EXPIRE" ""auth_to_access:c474a00eab4c206088ae126b00cece38"" "43139"
+1536174931.368419 [0 127.0.0.1:35750] "EXPIRE" ""client_id_to_access:applicationClientId"" "43139"
+1536174931.368425 [0 127.0.0.1:35750] "EXPIRE" ""uname_to_access:applicationClientId:"" "43139"
+
+above shell command the second time to execute
+Could not read JSON: Cannot construct instance of org.springframework.security.oauth2.provider.OAuth2Authentication (no Creators, like default construct, exist): cannot deserialize from Object value (no delegate- or property-based Creator)

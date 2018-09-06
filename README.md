@@ -65,7 +65,7 @@ barClientId:secret 键-值对对应的BASE64编码 YmFyQ2xpZW50SWQ6c2VjcmV0
 curl -i -X POST http://localhost:8081/uaa/oauth/token \
 -H 'authorization: Basic YmFyQ2xpZW50SWQ6c2VjcmV0' \
 -H "Accept: application/json" \
--d "client_id=barClientId&client_secret=secret&grant_type=authorization_code&code=psORUd&redirect_uri=http://www.baidu.com/"
+-d "client_id=barClientId&client_secret=secret&grant_type=authorization_code&code=VnESYV&redirect_uri=http://www.baidu.com/"
 
 
 ======================================================================================
@@ -140,7 +140,7 @@ curl -i -X POST http://localhost:8081/uaa/oauth/token \
 **************************************************************************************
 
 
-本范例反序列化spring boot 2.x 不支持，需要解决如下问题
+本范例反序列化spring boot 2.x/1.x 不支持，需要解决如下问题
 
 private OAuth2AccessToken deserializeAccessToken(byte[] bytes) {
 	return oauth2AccessTokenSerialization.deserialize(bytes);

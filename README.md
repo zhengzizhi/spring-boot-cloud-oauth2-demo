@@ -184,7 +184,7 @@ OK
 1536174931.368419 [0 127.0.0.1:35750] "EXPIRE" ""client_id_to_access:applicationClientId"" "43139"
 1536174931.368425 [0 127.0.0.1:35750] "EXPIRE" ""uname_to_access:applicationClientId:"" "43139"
 
-above shell command the second time to execute
+above curl command the second time to execute
 Could not read JSON: Cannot construct instance of org.springframework.security.oauth2.provider.OAuth2Authentication (no Creators, like default construct, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
 
 

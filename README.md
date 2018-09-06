@@ -1,4 +1,7 @@
 ```
+本范例项目异常链接地址：
+https://github.com/spring-projects/spring-security-oauth/issues/1471  
+
 # spring-boot-cloud-oauth2-demo
 
 

@@ -36,7 +36,7 @@ fooClientId:secret 键-值对对应的BASE64编码 Zm9vQ2xpZW50SWQ6c2VjcmV0
 curl -i -X POST http://localhost:8081/uaa/oauth/token \
 -H 'authorization: Basic Zm9vQ2xpZW50SWQ6c2VjcmV0' \
 -H "Accept: application/json" \
--d "client_id=fooClientId&client_secret=secret&grant_type=authorization_code&code=DvfAi3&redirect_uri=http://www.baidu.com/"
+-d "client_id=fooClientId&client_secret=secret&grant_type=authorization_code&code=VXB8gE&redirect_uri=http://www.baidu.com/"
 
 
 浏览器结合终端命令调用授权服务器范例2：

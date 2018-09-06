@@ -1,3 +1,4 @@
+```
 # spring-boot-cloud-oauth2-demo
 
 
@@ -182,3 +183,8 @@ OK
 
 above shell command the second time to execute
 Could not read JSON: Cannot construct instance of org.springframework.security.oauth2.provider.OAuth2Authentication (no Creators, like default construct, exist): cannot deserialize from Object value (no delegate- or property-based Creator)
+
+
+
+参考引用：https://www.baeldung.com/jackson-exception
+```
